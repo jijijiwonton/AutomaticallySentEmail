@@ -14,19 +14,29 @@ const ContactUs = () => {
        * Refer to the video from 05:00
        * https://www.youtube.com/watch?v=wUK40U6sPH0
        */
-      SecureToken: '', // Needed for user name, password, server and port
+      SecureToken: '', // Encapsulates about user name, password, server and port
       To: '',
       From: formState.email,
-      Subject: '',
+      Subject: ``, // If you want to include your email name, use it ${formState.name} and the rest of email subjects
       Body: ``,
     };
     if (window.Email) {
       window.Email.send(config).then(() => alert('Email sent successfully!'));
     }
   };
+
+  const resetHandler = (e) => {
+    e.target.value = '';
+    setFormState(e.target.value);
+  };
+
   return (
     <div>
-      <form className="container" onSubmit={submitHandler}>
+      <form
+        className="container"
+        onSubmit={submitHandler}
+        onReset={resetHandler}
+      >
         <input
           type="text"
           name="name"
@@ -43,7 +53,10 @@ const ContactUs = () => {
           onChange={changeHandler}
           className="border"
         ></input>
-        <input type="submit" value="Submit Email"></input>
+        <div className="btnContainer">
+          <input type="submit" value="Submit Email" className="btn" />
+          <input type="reset" value="Rest" className="btn" />
+        </div>
       </form>
     </div>
   );

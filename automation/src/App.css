@@ -11,3 +11,11 @@
   border: 3px solid lightblue;
   margin-bottom: 10px;
 }
+
+.btnContainer {
+  display: flex;
+}
+
+.btn {
+  margin: 3px;
+}
